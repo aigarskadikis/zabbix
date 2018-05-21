@@ -49,7 +49,7 @@ del "%~dp0zabbix_agentd.conf.latest" > nul 2>&1
 echo 2
 exit /b 2
 ) else echo 3
-
+exit /b 3
 )
 
 )
