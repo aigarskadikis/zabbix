@@ -1,2 +1,3 @@
 zabbix_agentd.log
 *.old
+output.log
