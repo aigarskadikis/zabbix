@@ -39,6 +39,7 @@ reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Upd
 if not !errorlevel!==0 (
 echo ready to install
 
+rem this is magical line which picks the technique to perform an installation
 call "%~dp0%5.cmd" %k% "%~dp0ccmcache\%destination%\%filename%"
 
 ) else zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 7 > nul 2>&1
@@ -53,4 +54,3 @@ rem 1 - sha1 checksum do not match
 )
 
 endlocal
-
