@@ -15,6 +15,10 @@ for /f "tokens=*" %%n in ('^
 echo %n%^|
 sed "s/.$//;s/^.//"') do set name=%%n
 
+for /f "tokens=*" %%h in ('^
+echo %h%^|
+sed "s/.$//;s/^.//"') do set sha1sum=%%h
+
 
 rem prepare destination dir dir
 for /f "tokens=*" %%d in ('^
