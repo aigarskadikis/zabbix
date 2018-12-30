@@ -16,9 +16,9 @@ setlocal EnableDelayedExpansion
 
 if not exist "%~dp0ccmcache\%destination%\%filename%" (
 echo %filename% do not exist. will download it now
-zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 2
+zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 2 > nul 2>&1
 curl %l% > "%~dp0ccmcache\%destination%\%filename%"
-zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 3
+zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 3 > nul 2>&1
 )
 
 rem if filename exists then check sha1 sum
@@ -27,18 +27,25 @@ sha1sum "%~dp0ccmcache\%destination%\%filename%" | sed "s/ .*$//g" | grep %sha1s
 if !errorlevel!==0 (
 
 echo checksum match. will check if some other apps are installing
-zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 4
+zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 4 > nul 2>&1
 rem 4 - setup file exists, sha1 correct
 
-tasklist | grep "chrome.exe" 
+tasklist | grep "msiexec.exe" > nul 2>&1
 if not !errorlevel!==0 (
 echo are ready to receive new installs
 
+rem check if reboot is pending
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired" > nul 2>&1
+if not !errorlevel!==0 (
+echo ready to install
 
-) else zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 6
-rem 6 - msiexec allready running
+) else zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 7 > nul 2>&1
+rem 7 - reboot are required to continue
 
-) else zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 1
+) else zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 6 > nul 2>&1
+rem 6 - msiexec already running
+
+) else zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 1 > nul 2>&1
 rem 1 - sha1 checksum do not match
 
 )
