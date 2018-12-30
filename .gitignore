@@ -3,3 +3,4 @@ zabbix_agentd.log
 output.log
 zabbix_agentd.conf.d/Server.conf
 zabbix_agentd.conf.d/ServerActive.conf
+ccmcache/cdn.atomisystems.com/apdownloads/ActivePresenter_v7.5.2_setup.exe

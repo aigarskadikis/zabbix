@@ -10,6 +10,12 @@ set k=%2
 set l=%3
 set h=%4
 
+rem remove double quotes (first and last character) from name
+for /f "tokens=*" %%n in ('^
+echo %n%^|
+sed "s/.$//;s/^.//"') do set name=%%n
+
+
 rem prepare destination dir dir
 for /f "tokens=*" %%d in ('^
 echo %l%^|

@@ -13,9 +13,22 @@ if not exist "%~dp0ccmcache\%destination%" md "%~dp0ccmcache\%destination%"
 
 echo %filename%
 
+
+
 setlocal EnableDelayedExpansion
 
-rem zabbix_sender -z %Server% -s "%computername%" -k active.presenter.status -o 0
+if not exist "%~dp0ccmcache\%destination%\%filename%" (
+
+zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 2
+curl %l% > "%~dp0ccmcache\%destination%\%filename%"
+zabbix_sender -z %Server% -s "%computername%" -k status.of[%name%] -o 3
+
+)
+
+if exist "%~dp0ccmcache\%destination%\%filename%" (
+echo file exist
+)
+
 
 
 endlocal
