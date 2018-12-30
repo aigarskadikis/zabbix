@@ -9,6 +9,9 @@ set n=%1
 set k=%2
 set l=%3
 set h=%4
+set sw=HKLM\SOFTWARE
+set u=Microsoft\Windows\CurrentVersion\Uninstall
+
 
 rem remove double quotes (first and last character) from name
 for /f "tokens=*" %%n in ('^
