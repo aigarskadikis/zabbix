@@ -3,5 +3,4 @@ zabbix_agentd.log
 output.log
 zabbix_agentd.conf.d/Server.conf
 zabbix_agentd.conf.d/ServerActive.conf
-ccmcache/cdn.atomisystems.com/apdownloads/ActivePresenter_v7.5.2_setup.exe
-ccmcache/3325322079154148081/6649345893662699027/skype-silent-uninstall.cmd
+ccmcache/*
