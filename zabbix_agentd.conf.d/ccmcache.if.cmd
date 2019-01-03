@@ -18,6 +18,7 @@ if not exist "%c%\%%l\%%b\offline.ready" (
 
 rem if source in not ready then shedule to prepare it IN BACKGROUND and EXIT PROGRAM
 for /f "tokens=*" %%p in ('dir /b "%c%\%%l\%%b\*.cmd"') do (
+rem start "" "%c%\%%l\%%b\%%p" prepare
 start "" "%c%\%%l\%%b\%%p" prepare
 )
 
