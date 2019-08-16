@@ -8,4 +8,3 @@ sc start "Zabbix Agent"
 ) else echo Zabbix Agent already exist
 
 endlocal
-pause

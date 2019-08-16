@@ -3,3 +3,5 @@ zabbix_agentd.log
 output.log
 zabbix_agentd.conf.d/ServerActive.conf
 ccmcache/*
+zabbix_agentd.conf.d/Server.conf
+zabbix_agentd.conf.d/Server.conf
